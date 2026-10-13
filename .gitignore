@@ -26,6 +26,7 @@ compileInfo.mat
 results/*.log
 results/metrics.json
 results/mil_metrics.json
+results/mil_xverify.json
 results/live_run_*.json
 
 # ---- 编辑器 / 系统 ----
