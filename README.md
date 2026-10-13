@@ -3,6 +3,7 @@
 [![Python](https://img.shields.io/badge/Python-3.9%2B%20%E2%80%94%20zero%20dependencies-blue)](python/)
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2020a%2B%20%28Simulink%2FStateflow%2FCoder%29-orange)](matlab/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+[![CI](https://github.com/swdscsc/guidebot/actions/workflows/ci.yml/badge.svg)](https://github.com/swdscsc/guidebot/actions/workflows/ci.yml)
 
 把商用智能导盲杖 **Glide** 的技术栈，用**零硬件成本**复刻成一个**可运行、可测量、可 Ablation** 的软件系统。
 
