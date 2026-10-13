@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>GuideBot 回放 - - mixed</title>
+<style>
+body{font-family:-apple-system,"Segoe UI",sans-serif;background:#f7f7f5;margin:0;padding:16px}
+.wrap{max-width:1080px;margin:0 auto}
+canvas{background:#fff;border:1px solid #ddd;border-radius:8px;width:100%}
+.bar{display:flex;gap:10px;align-items:center;margin:10px 0;flex-wrap:wrap}
+button{padding:6px 14px;border:1px solid #bbb;background:#fff;border-radius:6px;cursor:pointer}
+.tag{padding:3px 9px;border-radius:20px;font-size:12px;background:#eee}
+.tag.stop{background:#fde8e8;color:#a32d2d}.tag.slow_down{background:#faeeda;color:#854f0b}
+.tag.turn_left,.tag.turn_right{background:#e6f1fb;color:#185fa5}
+.tag.overhead{background:#fbEAF0;color:#993556}.tag.drop_ahead{background:#e1f5ee;color:#0f6e56}
+table{border-collapse:collapse;margin-top:14px;font-size:13px}
+td,th{border:1px solid #ddd;padding:4px 10px}
+</style></head><body><div class="wrap">
+<h2>GuideBot 仿真回放 - mixed</h2>
+<div class="bar">
+<button onclick="toggle()">Pause</button>
+<button onclick="reset()">Restart</button>
+<label>速度 <input type="range" id="sp" min="1" max="8" value="3"></label>
+<span>前向速度 v: <b id="vv">0.00</b> m/s</span>
+<span>当前提示: <span id="cue" class="tag">none</span></span>
+</div>
+<canvas id="cv" width="1040" height="320"></canvas>
+<div id="meta"></div>
+</div><script>
+const DATA = {"half_width": 2.0, "drops": [[15.685703235239972, 0.24439723730931034, 0.42897463911195133], [29.227346102778196, -0.2517451508035827, 0.4279934355883727]], "obstacles": [[4.394061286908622, 1.0900010432784035, 0.26626006506342836, 0.0, 0.0, "static"], [14.908990797482808, -1.5451482719812302, 0.2931449796003627, 0.0, 0.0, "static"], [26.830498800369178, 1.4067115865316768, 0.20461436617886605, 0.0, 0.0, "static"], [37.18059165488049, -1.4999400871055761, 0.18565102506820716, 0.0, 0.0, "static"], [13.118734151533161, 0.32734140204725526, 0.34902220993070865, 0.0, 0.0, "overhead"], [22.43581370081013, 0.15313364714703037, 0.29024691531796804, 0.0, 0.0, "overhead"], [30.938019979531294, 0.13393827527190383, 0.23542485698214308, 0.0, 0.0, "overhead"], [22.14119212729544, 0.29039616979334615, 0.24495650340235742, -0.8524041026627225, -0.44053207481307616, "pedestrian"], [29.671061449252324, -0.08669115610995792, 0.23355915250915638, -0.2533686520035262, 0.32302309629027404, "pedestrian"], [31.462169347703707, -0.7801906412189029, 0.21574326252457493, -0.4450086952516211, -0.4373352867182208, "pedestrian"], [23.39384283361259, -0.45388527629591546, 0.21441216165033297, -0.5002225221090926, -0.5598217663594977, "pedestrian"], [36.127075097004244, 0.9716978580679023, 0.23161613528447486, -0.27811509218850683, -0.3181829857815604, "pedestrian"], [5.5864768054191245, -0.10813683774508731, 0.25862516700428795, -0.15785738101149593, 0.1454020173915581, "pedestrian"]], "frames": []};
+const canvas=document.getElementById('cv'),ctx=canvas.getContext('2d');
+let idx=0,playing=true;
+const S=18.0, PAD=20;
+function sx(x){return PAD+ x*S*1.05;}
+function sy(y){return canvas.height/2 - y*S;}
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  const half=DATA.half_width;
+  ctx.fillStyle='#faf9f6';ctx.fillRect(PAD, sy(half), canvas.width-2*PAD, sy(-half)-sy(half));
+  ctx.strokeStyle='#ccc';ctx.beginPath();ctx.moveTo(PAD,sy(half));ctx.lineTo(canvas.width-PAD,sy(half));
+  ctx.moveTo(PAD,sy(-half));ctx.lineTo(canvas.width-PAD,sy(-half));ctx.stroke();
+  ctx.fillStyle='#ffb4b4';
+  for(const d of DATA.drops){ctx.beginPath();ctx.arc(sx(d[0]),sy(d[1]),d[2]*S,0,6.283);ctx.fill();
+    ctx.strokeStyle='#e24b4a';ctx.setLineDash([4,3]);ctx.stroke();ctx.setLineDash([]);}
+  const f=DATA.frames[idx];
+  const view_x=f.x-6;
+  ctx.save();ctx.translate(-(sx(view_x)-PAD+15),0);
+  for(const o of DATA.obstacles){
+    const t=f.t;
+    const ox=o[0]+o[3]*t, oy=o[1]+o[4]*t;
+    if(ox<view_x-2||ox>view_x+34) continue;
+    ctx.beginPath();ctx.arc(sx(ox),sy(oy),o[2]*S,0,6.283);
+    if(o[5]==='overhead'){ctx.fillStyle='rgba(212,83,126,0.35)';ctx.strokeStyle='#993556';}
+    else if(o[5]==='pedestrian'){ctx.fillStyle='rgba(55,138,221,0.35)';ctx.strokeStyle='#185fa5';}
+    else{ctx.fillStyle='rgba(136,135,128,0.3)';ctx.strokeStyle='#5f5e5a';}
+    ctx.fill();ctx.stroke();
+  }
+  if(f.path&&f.path.length>1){ctx.strokeStyle='#1d9e75';ctx.lineWidth=2;ctx.beginPath();
+    ctx.moveTo(sx(f.path[0][0]),sy(f.path[0][1]));
+    for(const p of f.path) ctx.lineTo(sx(p[0]),sy(p[1]));ctx.stroke();ctx.lineWidth=1;}
+  ctx.beginPath();ctx.arc(sx(f.x),sy(f.y),0.22*S,0,6.283);
+  ctx.fillStyle=f.brake?'#e24b4a':'#534ab7';ctx.fill();
+  ctx.strokeStyle='#26215c';ctx.beginPath();ctx.moveTo(sx(f.x),sy(f.y));
+  ctx.lineTo(sx(f.x+0.9*Math.cos(f.psi)),sy(f.y+0.9*Math.sin(f.psi)));ctx.stroke();
+  ctx.restore();
+  document.getElementById('vv').textContent=f.v.toFixed(2);
+  const c=document.getElementById('cue');c.textContent=f.cue;c.className='tag '+f.cue;
+  document.getElementById('meta').innerHTML='<table><tr><th>t</th><td>'+f.t.toFixed(1)+'s</td>'+
+    '<th>clear</th><td>'+f.clear+'m</td><th>brake</th><td>'+f.brake+'</td></tr></table>';
+}
+function step(){ if(idx<DATA.frames.length-1) idx++; draw();
+  if(playing) setTimeout(step, 90/ (document.getElementById('sp').value/3)); }
+function toggle(){playing=!playing; if(playing) step();}
+function reset(){idx=0;playing=true;step();}
+draw();step();
+</script></body></html>

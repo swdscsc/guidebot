@@ -1,0 +1,35 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# ---- MATLAB / Simulink ----
+# .slx 与 generated_c/ 是刻意入库的：前者是"脚本可重建的模型产物"，
+# 后者是代码生成的证据（没装 MATLAB 的人也能看生成的 ANSI C）。
+# 其余中间产物（缓存/构建目录/二进制解析表）一律不入库。
+matlab/slprj/
+matlab/codegen/
+matlab/results/
+matlab/*.asv
+matlab/*.slxc
+matlab/*.slx.orig
+*.dmr
+*.mldatx
+buildInfo.mat
+codeInfo.mat
+compileInfo.mat
+
+# ---- 评测产物（一行命令就能重跑，只有摘要 .md 入库便于直接阅读）----
+results/*.log
+results/metrics.json
+results/mil_metrics.json
+results/live_run_*.json
+
+# ---- 编辑器 / 系统 ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

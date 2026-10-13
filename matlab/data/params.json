@@ -1,0 +1,68 @@
+{
+  "control": {
+    "mu": 0.6,
+    "g": 9.81,
+    "latency_s": 0.1,
+    "margin": 0.12,
+    "slew_max_dps": 150.0,
+    "v_min": 0.3,
+    "body_clear": 0.15,
+    "ttc_brake_s": 0.9,
+    "safety_clear": 0.25,
+    "slow_threshold": 0.45,
+    "enable_brake_rule": true,
+    "enable_gate": true,
+    "enable_slew_limit": true,
+    "dt": 0.05
+  },
+  "planner": {
+    "delta_max_deg": 25.0,
+    "n_candidates": 21,
+    "preview_dist": 3.2,
+    "horizon_min": 0.6,
+    "horizon_max": 4.0,
+    "v_floor": 0.9,
+    "dt_sim": 0.15,
+    "target_clear": 0.65,
+    "w_clear": 0.6,
+    "w_collision": 40.0,
+    "w_barrier": 8.0,
+    "w_goal": 0.55,
+    "w_smooth": 0.15,
+    "w_heading": 0.2,
+    "w_wall": 0.3,
+    "use_prediction": true,
+    "conflict_window": 3.5,
+    "self_ignore_dist": 0.4,
+    "unknown_is_obstacle": true
+  },
+  "sensor": {
+    "n_rays": 49,
+    "fov_deg": 68.0,
+    "max_range": 8.0,
+    "h_low": 0.95,
+    "h_high": 1.5,
+    "enable_high": true,
+    "probe_reach": 1.3,
+    "probe_step": 0.22,
+    "probe_halfwidth": 0.4,
+    "enable_probe": true,
+    "range_noise_rel": 0.015,
+    "range_noise_abs": 0.01,
+    "dropout_prob": 0.01,
+    "seed": 0
+  },
+  "human": {
+    "preferred_speed": 1.15,
+    "slow_factor": 0.5,
+    "reaction_s": 0.35,
+    "accel_max": 1.0,
+    "decel_max": 2.0,
+    "obey_cues": true,
+    "speed_jitter": 0.08
+  },
+  "const": {
+    "WHEELBASE": 0.45,
+    "ROBOT_RADIUS": 0.22
+  }
+}

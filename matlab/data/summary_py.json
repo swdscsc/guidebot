@@ -1,0 +1,167 @@
+[
+ {
+  "scenario": "corridor",
+  "seed": 1,
+  "dist_m": 37.461,
+  "goal": true,
+  "stuck": false,
+  "collisions": 0,
+  "drop_falls": 0,
+  "stops": 0,
+  "frames": 166
+ },
+ {
+  "scenario": "corridor",
+  "seed": 2,
+  "dist_m": 37.41,
+  "goal": true,
+  "stuck": false,
+  "collisions": 0,
+  "drop_falls": 0,
+  "stops": 0,
+  "frames": 165
+ },
+ {
+  "scenario": "corridor",
+  "seed": 3,
+  "dist_m": 37.508,
+  "goal": true,
+  "stuck": false,
+  "collisions": 0,
+  "drop_falls": 0,
+  "stops": 0,
+  "frames": 165
+ },
+ {
+  "scenario": "crowd",
+  "seed": 1,
+  "dist_m": 37.514,
+  "goal": true,
+  "stuck": false,
+  "collisions": 0,
+  "drop_falls": 0,
+  "stops": 0,
+  "frames": 166
+ },
+ {
+  "scenario": "crowd",
+  "seed": 2,
+  "dist_m": 37.446,
+  "goal": true,
+  "stuck": false,
+  "collisions": 0,
+  "drop_falls": 0,
+  "stops": 0,
+  "frames": 165
+ },
+ {
+  "scenario": "crowd",
+  "seed": 3,
+  "dist_m": 39.342,
+  "goal": true,
+  "stuck": false,
+  "collisions": 0,
+  "drop_falls": 0,
+  "stops": 0,
+  "frames": 175
+ },
+ {
+  "scenario": "overhead",
+  "seed": 1,
+  "dist_m": 38.247,
+  "goal": true,
+  "stuck": false,
+  "collisions": 0,
+  "drop_falls": 0,
+  "stops": 0,
+  "frames": 169
+ },
+ {
+  "scenario": "overhead",
+  "seed": 2,
+  "dist_m": 38.726,
+  "goal": true,
+  "stuck": false,
+  "collisions": 0,
+  "drop_falls": 0,
+  "stops": 0,
+  "frames": 171
+ },
+ {
+  "scenario": "overhead",
+  "seed": 3,
+  "dist_m": 40.27,
+  "goal": true,
+  "stuck": false,
+  "collisions": 0,
+  "drop_falls": 0,
+  "stops": 0,
+  "frames": 180
+ },
+ {
+  "scenario": "dropoff",
+  "seed": 1,
+  "dist_m": 30.837,
+  "goal": false,
+  "stuck": true,
+  "collisions": 0,
+  "drop_falls": 0,
+  "stops": 13,
+  "frames": 195
+ },
+ {
+  "scenario": "dropoff",
+  "seed": 2,
+  "dist_m": 40.203,
+  "goal": true,
+  "stuck": false,
+  "collisions": 0,
+  "drop_falls": 0,
+  "stops": 0,
+  "frames": 177
+ },
+ {
+  "scenario": "dropoff",
+  "seed": 3,
+  "dist_m": 40.312,
+  "goal": true,
+  "stuck": false,
+  "collisions": 0,
+  "drop_falls": 0,
+  "stops": 7,
+  "frames": 212
+ },
+ {
+  "scenario": "mixed",
+  "seed": 1,
+  "dist_m": 40.044,
+  "goal": true,
+  "stuck": false,
+  "collisions": 0,
+  "drop_falls": 0,
+  "stops": 7,
+  "frames": 211
+ },
+ {
+  "scenario": "mixed",
+  "seed": 2,
+  "dist_m": 38.205,
+  "goal": true,
+  "stuck": false,
+  "collisions": 0,
+  "drop_falls": 0,
+  "stops": 0,
+  "frames": 168
+ },
+ {
+  "scenario": "mixed",
+  "seed": 3,
+  "dist_m": 16.118,
+  "goal": false,
+  "stuck": true,
+  "collisions": 0,
+  "drop_falls": 0,
+  "stops": 13,
+  "frames": 132
+ }
+]

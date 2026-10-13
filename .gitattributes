@@ -1,0 +1,13 @@
+# 统一换行符：仓库里一律存 LF，检出时不自动转换
+* text=auto eol=lf
+
+# 二进制资源不要动它的字节
+*.png  binary
+*.slx  binary
+*.mat  binary
+*.dmr  binary
+*.mldatx binary
+
+# diff 时按语言着色/分 diff 驱动
+*.m    diff=matlab
+*.slx  diff=matlab
