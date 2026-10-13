@@ -1,7 +1,7 @@
 # GuideBot · 复刻 Glide 的行人导引机器人软件栈
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B%20%E2%80%94%20zero%20dependencies-blue)](python/)
-[![MATLAB](https://img.shields.io/badge/MATLAB-R2020a%2B%20%28Simulink%2FStateflow%2FCoder%29-orange)](matlab/)
+[![MATLAB (可选/参考)](https://img.shields.io/badge/MATLAB-R2020a%2B%20%28可选·参考实现%29-orange)](matlab/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![CI](https://github.com/swdscsc/guidebot/actions/workflows/ci.yml/badge.svg)](https://github.com/swdscsc/guidebot/actions/workflows/ci.yml)
 
@@ -9,6 +9,9 @@
 
 > **关于范围**：本项目**不含任何真实硬件**，全部为仿真层面的算法实现与评测。
 > 难点在系统设计与实验验证，不在结构件——这也是它作为一个软件项目值得看的地方。
+
+> **技术栈诚实声明**：本仓库的**核心交付物是 `python/` 下的零依赖软件栈**（感知—规划—控制—反馈闭环，可直接运行、可量化评测），这是作者独立完成并验证的部分。
+> `matlab/` 目录中的 Simulink / Stateflow / Coder 相关文件为**可选的参考实现与自动生成产物**，需要相应商业软件环境才能复现；作者本人的主要贡献在 Python 侧的系统设计与实验验证，面试时请以此为准作答。
 
 **30 秒看懂它的价值**：不是"检测到障碍就停"的 Demo，而是一条完整闭环 ——
 感知<｜hy_place▁holder▁no▁813｜>规划 → 决策 → 物理执行 → 用户反馈 → 再感知，
